@@ -1,0 +1,136 @@
+/* General Reset */
+body, html {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+    background: #fcfcfc;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+}
+
+.container-forms{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    width: 600px;
+    height: 600px;
+}
+
+
+/* Login Form Styling */
+.form-content {
+    width: 100%;
+}
+
+.login-header {
+    font-size: 1.8rem;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.input-field {
+    text-align: center;
+    width: 500px;
+    margin-bottom: 1.2rem;
+}
+
+.input, .password {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: none;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    outline: none;
+    font-size: 1rem;
+    transition: 0.3s ease;
+}
+
+.input::placeholder, .password::placeholder {
+    color: #ccc;
+}
+
+.input:focus, .password:focus {
+    background: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 4px rgba(255, 255, 255, 0.6);
+}
+
+.error-message {
+    font-size: 0.9rem;
+    color: #ee1c1c;
+}
+
+.forgot-password {
+    font-size: 0.9rem;
+    color: #ffa7a7;
+    text-decoration: none;
+    margin-bottom: 1rem;
+    display: inline-block;
+    transition: color 0.3s;
+}
+
+.forgot-password:hover {
+    color: #fff;
+}
+
+/* Button Styling */
+.button-field {
+    text-align: center;
+}
+
+button {
+    width: 100%;
+    padding: 0.8rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 8px;
+    background: #2575fc;
+    color: #fff;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+button:hover {
+    background: #1a5bb8;
+}
+
+/* Link Styling */
+.form-link {
+    text-align: center;
+    font-size: 0.9rem;
+    margin-top: 1rem;
+}
+
+.form-link a {
+    color: #e47878;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.form-link a:hover {
+    color: #c73a3a;
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+    .container {
+        padding: 1.5rem;
+    }
+
+    .login-header {
+        font-size: 1.5rem;
+    }
+
+    .input, .password, button {
+        font-size: 0.9rem;
+    }
+}
