@@ -52,7 +52,8 @@ body{
 }
 
 #login-btn:hover{
-    background-color:lightgoldenrodyellow;
+    background-color: lightcyan;
+    color: black;
 }
 .container-fluid> a{
     font-size: 30px; 

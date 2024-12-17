@@ -21,6 +21,7 @@ body, html {
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
     width: 600px;
     height: 600px;
+    color: black;
 }
 
 
@@ -40,6 +41,7 @@ body, html {
     text-align: center;
     width: 500px;
     margin-bottom: 1.2rem;
+    color: black;
 }
 
 .input, .password {
@@ -48,7 +50,7 @@ body, html {
     border: none;
     border-radius: 8px;
     background: rgba(255, 255, 255, 0.2);
-    color: #fff;
+    color: black;
     outline: none;
     font-size: 1rem;
     transition: 0.3s ease;
