@@ -1,3 +1,43 @@
+<?php
+session_start();
+
+include_once 'DatabaseConnection.php';
+
+if(isset($_POST['submit'])){
+
+   $firstName = $_POST['firstName'];
+   $lastName = $_POST['lastName'];
+   $email = $_POST['email'];
+   $pass = md5($_POST['password']);
+   $cpass = md5($_POST['cpassword']);
+
+   // Krijo një instancë të klasës së lidhjes me bazën e të dhënave
+   $dbConnection = new DatabaseConnection();
+   // Fillo lidhjen me bazën e të dhënave
+   $conn = $dbConnection->startConnection();
+
+   $select = " SELECT * FROM user_form WHERE email = :email && password = :password ";
+   $stmt = $conn->prepare($select);
+   $stmt->execute(['email' => $email, 'password' => $pass]);
+
+   if($stmt->rowCount() > 0){
+     $error[] = 'user already exist! ';
+
+   }else{
+      if($pass != $cpass){
+         $error[] = 'password not matched!';
+      }else{
+         $insert = "INSERT INTO user_form(name, email, password, user_type) VALUES(:name, :email, :password)";
+         $stmt = $conn->prepare($insert);
+         $stmt->execute(['firstName' => $firstName, 'email' => $email, 'password' => $pass]);
+         header('location:login.php');
+      }
+   }
+};
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
