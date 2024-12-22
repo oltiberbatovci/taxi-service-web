@@ -27,7 +27,7 @@ if(isset($_POST['submit'])){
       if($pass != $cpass){
          $error[] = 'password not matched!';
       }else{
-         $insert = "INSERT INTO user_form(name, email, password, user_type) VALUES(:name, :email, :password)";
+         $insert = "INSERT INTO user_form(firstName, email, password) VALUES(:name, :email, :password)";
          $stmt = $conn->prepare($insert);
          $stmt->execute(['firstName' => $firstName, 'email' => $email, 'password' => $pass]);
          header('location:login.php');
