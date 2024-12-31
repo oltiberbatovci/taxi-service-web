@@ -14,7 +14,7 @@
         //dhe e bejme lidhjen e parametrave permes metodes execute
         //Pikepyetjet neper queries (?) zevendesohen nga parametrat te metoda execute
         //kurse pa parametra, vazhdojme direkt me metoden query
-        //metodat fetch/fetchAll perdoren kur duam te kthejme/marrim ndonje vlere
+        //metodat fetch/fetchAll perdoren kur duam te kthejme/marrim ndonje vlere 
         
 
 
