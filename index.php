@@ -1,3 +1,12 @@
+<?php
+
+include 'DatabaseConnection.php';
+
+$dbConnection = new DatabaseConnection();
+$conn = $dbConnection->startConnection();
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,6 +14,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="slider.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="https://fonts.googlrapis.com/css2?family=Material+Symbols
@@ -15,29 +25,29 @@
 
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid">
-              <a class="navbar-logo" href="index.html">ThirreTaxin</a>
+              <a class="navbar-logo" href="index.php">ThirreTaxin</a>
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
               </button>
               <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                   <li class="nav-item">
-                    <a class="nav-link" href="index.html">HOME</a>
+                    <a class="nav-link" href="index.php">HOME</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="about.html">ABOUT</a>
+                    <a class="nav-link" href="about.php">ABOUT</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="order.html">POROSIT</a>
+                    <a class="nav-link" href="order.php">POROSIT</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="contact.html">CONTACT</a>
+                    <a class="nav-link" href="contact.php">CONTACT</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="punesimi.html">PUNESOHU</a>
+                    <a class="nav-link" href="punesimi.php">PUNESOHU</a>
                   </li>
                 </ul>
-                <a href="login.html"><button id="login-btn">Login</button></a>
+                <a href="login.php"><button id="login-btn">Login</button></a>
               </div>
             </div>
           </nav>
@@ -79,6 +89,24 @@
               }
             
               </style>
+            <script>
+                  let i = 0;
+                  let imgArray = ['images/blue-taxi1.png','images/golden-taxi2.png','images/Pink-taxi2.png','images/urban-taxi.png','images/e-taxi-tesla.png'];
+            
+                  function changeImg(){
+                      document.getElementById('slideshow').src = imgArray[i];
+            
+                      if(i< imgArray.length -1){
+                          i++;
+                      }
+                      else{
+                          i=0;
+                      }
+                      setTimeout("changeImg()", 2600);
+                  }
+                  document.addEventListener(onload, changeImg());
+                  
+              </script>
             </div>
         </div>
 
@@ -115,48 +143,24 @@
 
     <h2 style="font-weight: bolder; color: black;padding-top: 40px;">PARTNERET TANE KRYESOR JANE</h2>
     <div class="photos">
-    <div class="rubrika" >
-         <img src="images/blue-taxi2.png" alt="" class="img" height="500px" width="450px" >
-         <div class="button">
-          <button onclick="location.href='order.html'" type="button" class="blue-button">BLUE TAXI</button>
-      </div>
-    </div>
-     
-    <div class="rubrika" >
-        <img src="images/golden-taxi2.png" alt="" class="img" height="500px" width="450px" >
-        <div class="button">
-         <button onclick="location.href='order.html'" type="button" class="blue-button">GOLDEN TAXI</button>
-     </div>
-   </div>
+            
+             
+          <?php 
+                $sql = "SELECT * FROM images ORDER BY id DESC";
+                 $res = $conn->query($sql);
 
-   <div class="rubrika" >
-    <img src="images/online-taxi.png" alt="" class="img" height="500px" width="450px" >
-    <div class="button">
-     <button onclick="location.href='order.html'" type="button" class="blue-button">ONLINE TAXI</button>
- </div>
-</div>
-
-<div class="rubrika" >
-   <img src="images/Pink-taxi2.png" alt="" class="img" height="500px" width="450px" >
-   <div class="button">
-   <button onclick="location.href='order.html'" type="button" class="blue-button">PINK TAXI</button>
-</div>
-</div>
-
-<div class="rubrika" >
-<img src="images/urban-taxi.png" alt="" class="img" height="500px" width="450px" >
-<div class="button">
-<button onclick="location.href='order.html'" type="button" class="blue-button">URBAN TAXI</button>
-</div>
-</div>
-
-<div class="rubrika" >
-<img src="images\IMG-65ba58ce8064e6.72087687.png" alt="" class="img" height="500px" width="450px" >
-<div class="button">
-<button onclick="location.href='order.html'" type="button" class="blue-button">E-TAXI TESLA</button>
-        </div>
-    </div>
-</div>
+                if ($res->rowCount() > 0) {
+                    while ($images = $res->fetch(PDO::FETCH_ASSOC)) {  
+        ?>
+             <div class="rubrika" >
+             	<img src="images/<?=$images['image_url']?>" alt="" class="img" height="500px" width="450px" >
+                 <div class="button">
+                  <button onclick="location.href='order.php'" type="button" class="blue-button">REZERVO TAXI</button>
+              </div>
+            </div>
+             
+      <?php } }?>
+  </div>
 </main>
 
 <!-- Footer -->
