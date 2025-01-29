@@ -9,14 +9,16 @@ class aplikimetpunes{
   private $nenshtetsia;
   private $qyteti;
   private $adresa;
+  private $pozita;
 
-    public function __construct($emri,$mbiemri,$email,$nenshtetsia,$qyteti,$adresa){
+    public function __construct($emri,$mbiemri,$email,$nenshtetsia,$qyteti,$adresa,$pozita){
         $this->emri = $emri;
         $this->mbiemri = $mbiemri;
         $this->email = $email;
         $this->nenshtetsia = $nenshtetsia;
         $this->qyteti = $qyteti;
         $this->adresa = $adresa;
+        $this->pozita = $pozita;
     }
 
     public function getEmri(){
@@ -52,11 +54,13 @@ class aplikimetpunes{
     public function getAdresa(){
         return $this->adresa;
     }
+    public function getPozita(){
+        return $this->pozita;
+    }
     public function setAdresa($adresa){
         $this->adresa = $adresa;
     }
     public function __toString(){
-        return" - perduruesi:".$this->$id ." : ".$this->$emri." : ".$this->$mbiemri." : ".$this->$email." : ".$this->$nenshtetsia." : ".$this->$qyteti." : ".$this->$adresa;
+        return" - perduruesi:".$this->$id ." : ".$this->$emri." : ".$this->$mbiemri." : ".$this->$email." : ".$this->$nenshtetsia." : ".$this->$qyteti." : ".$this->$adresa." : ".$this->$pozita;
     }
-
 }

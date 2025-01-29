@@ -10,12 +10,13 @@ if (isset($_POST['submit'])) {
     $nenshtetesia = $_POST['nenshtetesia'];
     $qyteti = $_POST['qyteti'];//verejtje??
     $adresa = $_POST['address'];
+    $pozita = $_POST['pozita'];
 
     $errors = array();
-    if(empty($emri) || empty($mbiemri) || empty($email) || empty($nenshtetesia)|| empty($qyteti) || empty($adresa)){
+    if(empty($emri) || empty($mbiemri) || empty($email) || empty($nenshtetesia)|| empty($qyteti) || empty($adresa) || empty($pozita)){
         $errors[] = "All fields are required!";
     }else{
-    $Aplikimetpunes = new aplikimetpunes($emri, $mbiemri, $email,$nenshtetesia, $qyteti, $adresa);
+    $Aplikimetpunes = new aplikimetpunes($emri, $mbiemri, $email,$nenshtetesia, $qyteti, $adresa, $pozita);
 
     $AplikimetRepository = new aplikimetRepository();
     $AplikimetRepository->insertAplikimet($Aplikimetpunes);
@@ -73,13 +74,13 @@ if (isset($_POST['submit'])) {
       <p id="pozitat"><small>Ne rast aplikimi per shofer, leja e qarkullimit duhet te jete me e vjeter se 3 vjet!</small></p>
 
       <div class="Aplikimi">
-          <select id="open-positions">
+          <select id="open-positions" name="pozita">
               <option value="" disabled selected>Pozitat aktive</option>
                       <option value="Shofer">Shofer/e</option>
                       <option value="Bazist">Bazist/e</option>
                       <option value="Autolarje">Autolarje</option>
           </select>
-          <form method="post">
+          <form method="post" onsubmit="return validateForm();">
               <div class="input-field">
                   <p class="paragraph">Emri</p>
                   <input id="emri" name="emri" type="text" placeholder="Emri juaj">

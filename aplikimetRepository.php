@@ -28,12 +28,13 @@
             $nenshtetsia = $aplikimetpunes->getNenshtetsia();
             $qyteti=$aplikimetpunes->getQyteti();
             $adresa = $aplikimetpunes->getAdresa();
+            $pozita = $pozita->getPozita();
           
 
-            $sql = "INSERT INTO aplikimetpunes(emri,mbiemri,email, nenshtetsia,qyteti,adresa) VALUES (?,?,?,?,?,?)";
+            $sql = "INSERT INTO aplikimetpunes(emri,mbiemri,email, nenshtetsia,qyteti,adresa,pozita) VALUES (?,?,?,?,?,?,?)";
 
             $statement = $conn->prepare($sql);
-            $statement->execute([$emri, $mbiemri, $email, $nenshtetsia,$qyteti, $adresa]);
+            $statement->execute([$emri, $mbiemri, $email, $nenshtetsia,$qyteti, $adresa,$pozita]);
 
             echo "<script>alert('U shtua me sukses!')</script>";
         }
@@ -51,12 +52,12 @@
 
         //Pjesa tjeter e funksioneve CRUD: update 
         //dergohet parametri ne baze te cilit e identifikojme studentin (ne kete rast id, por mund te jete edhe ndonje atribut tjeter) dhe parametrat e tjere qe mund t'i ndryshojme (emri, mbiemri, etj...)
-        public function editAplikimetPunes($id, $emri, $mbiemri, $email, $nenshtetsia,$qyteti, $adresa){
+        public function editAplikimetPunes($id, $emri, $mbiemri, $email, $nenshtetsia,$qyteti, $adresa,$pozita){
             $conn = $this->connection;
-            $sql = "UPDATE aplikimetpunes SET emri=?,mbiemri=?, email=?, nenshtetsia=?,qyteti=?,adresa=? WHERE Id=?";
+            $sql = "UPDATE aplikimetpunes SET emri=?,mbiemri=?, email=?, nenshtetsia=?,qyteti=?,adresa=?,pozita=? WHERE Id=?";
 
             $statement = $conn->prepare($sql);
-            $statement->execute([$emri,$mbiemri, $email, $nenshtetsia,$qyteti, $adresa,$id]);
+            $statement->execute([$emri,$mbiemri, $email, $nenshtetsia,$qyteti, $adresa,$id,$pozita]);
 
             echo "<script>alert('U ndryshua me sukses!')</script>";
 
