@@ -25,7 +25,7 @@ if (isset($_POST['submitbtn'])) {
     <head>
     </head>
     <body>
-        <h3 id="h3">Shtoni nje aplikim te punes</h3>
+        <h3 id="h3">Shto aplikim pune</h3>
         <form action="" method="post">  
             <p>Emri:</p>
             <input type="text" name="emri" ><br>
