@@ -9,12 +9,12 @@ if ($_SESSION['role'] !== 'user') {
     exit();
   }
 
-    if(isset($_SESSION['email']) && isset($_SESSION['password'])){
-        echo '<li><button class="logIn"><a href="logout.php">Log out</a></button></li>';
-    } 
-    else {
-        echo '<li><button id="login-btn"><a href="login.php">Log in</a></button></li>';
-    }
+    // if(isset($_SESSION['email']) && isset($_SESSION['password'])){
+    //     echo '<li><button class="logIn"><a href="logout.php">Log out</a></button></li>';
+    // } 
+    // else {
+    //     echo '<li><button id="login-btn"><a href="login.php">Log in</a></button></li>';
+    // }
 $dbConnection = new DatabaseConnection();
 $conn = $dbConnection->startConnection();
 
@@ -36,14 +36,14 @@ $conn = $dbConnection->startConnection();
 
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid">
-              <a class="navbar-logo" href="index.php">ThirreTaxin</a>
+              <a class="navbar-logo" href="homeUser.php">ThirreTaxin</a>
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
               </button>
               <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                   <li class="nav-item">
-                    <a class="nav-link" href="index.php">HOME</a>
+                    <a class="nav-link" href="homeUser.php">HOME</a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" href="about.php">ABOUT</a>
