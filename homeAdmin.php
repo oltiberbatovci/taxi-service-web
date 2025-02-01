@@ -40,7 +40,7 @@ $conn = $dbConnection->startConnection();
                     <a class="nav-link" href="dashboard.php">DASHBOARD</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="shtoKompanin.php">ADD CONTENT</a>
+                    <a class="nav-link" href="addContent.php">ADD CONTENT</a>
                   </li>
                   <!-- <li class="nav-item">
                     <a class="nav-link" href="about.php">ABOUT</a>
