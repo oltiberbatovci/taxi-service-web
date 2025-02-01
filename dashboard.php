@@ -20,7 +20,7 @@ $stre1 = new ContactRepository();
 $allKontaktat = $stre1->getAllKontakti();
 
 $stre2 = new RezervimiRepository();
-$allRezervimi = $stre2->getAllRezervimiet();
+$allRezervimi = $stre2->getAllRezervimet();
 
 
 $stre3 = new PerdoruesitRepository();

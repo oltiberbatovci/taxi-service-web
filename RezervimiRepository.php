@@ -36,7 +36,7 @@
             echo "<script>alert('U shtua me sukses!')</script>";
         }
 
-        public function getAllRezervimiet(){
+        public function getAllRezervimet(){
             $conn = $this->connection;
 
             $sql = "SELECT * FROM rezervimi_taksit";
