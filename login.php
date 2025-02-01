@@ -1,44 +1,44 @@
 <?php
-session_start();
-include 'DatabaseConnection.php';
+    session_start();
+    include 'Perdoruesit.php';
+    include 'PerdoruesitRepository.php';
 
-$error = [];
-
-if (isset($_POST['submit'])) {
-    $dbConnection = new DatabaseConnection();
-    $conn = $dbConnection->startConnection();
-
-    if ($conn) {    
-        $email = $_POST['email'];
-        $password = $_POST['password'];
-
-        $sql = "SELECT * FROM user_form WHERE email = :email";
-        $stmt = $conn->prepare($sql);
-        $stmt->execute(['email' => $email]);
-        $user = $stmt->fetch();
-
-        if ($user && password_verify($password, $user['password'])) {      
-            $user_type = $user['user_type'] ?? 'user'; // Default to 'user' if column doesn't exist
-
-            if ($user_type == 'admin') {          
-                $_SESSION['admin_name'] = $user['name'];           
-                header('Location: homeAdmin.php');
-                exit();
-            } else {
-                $_SESSION['user_name'] = $user['name'];
-                header('Location: homeUser.php');
-                exit();
-            }
-        } else {
-            $error[] = 'Email or password is incorrect!';
+    if(isset($_POST['login'])){
+        if(empty($_POST['email']) || empty($_POST['password'])){
+            echo '<script>alert("Please fill all fields!");</script>';
         }
-    } else {
-        $error[] = 'Database connection error!';
+        else{
+            $email = $_POST['email'];
+            $password = $_POST['password'];
+
+            $userRepository = new PerdoruesitRepository();
+            $users = $userRepository->getAllUsers();
+            foreach($users as $user){
+                if($user['email'] == $email && $user['password'] == $password){
+                    $_SESSION['id'] = $user['id'];
+                    $_SESSION['name'] = $user['name'];
+                    $_SESSION['email'] = $email;
+                    $_SESSION['password'] = $password;
+                    $_SESSION['role'] = $user['role'];
+                    
+                    if ($_SESSION['role'] == 'admin') {
+                        header("Location: homeAdmin.php");
+                        exit();
+                    } else {
+                        header("Location: homeUser.php");
+                        exit();
+                    }
+                }
+            }
+            if(!$userRepository->emailExists($email)){
+                $emailError = 'Email doesn\'t exist! Please register!';
+            } 
+            else if(!password_verify($password, $user['password'])){
+                $pswError = 'Password incorrect!';
+            }
+        }
     }
-}
 ?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -79,7 +79,7 @@ if (isset($_POST['submit'])) {
                     </div>
 
                     <div class="btn-group">
-                        <button type="submit" name="submit">Login</button>
+                        <button type="submit" name="login">Login</button>
                     </div>
 
                     <div class="form-link">

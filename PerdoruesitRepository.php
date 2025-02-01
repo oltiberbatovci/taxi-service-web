@@ -1,89 +1,81 @@
 <?php
-    include_once('DatabaseConnection.php');
+    include_once 'DatabaseConnection.php';
 
     class PerdoruesitRepository{
         private $connection;
 
-        public function __construct()
-        {
+        function __construct(){
             $conn = new DatabaseConnection;
             $this->connection = $conn->startConnection();
         }
 
-        //kur kemi parametra kryesisht e pergatisim sql per marrjen e parametrave me prepare
-        //dhe e bejme lidhjen e parametrave permes metodes execute
-        //Pikepyetjet neper queries (?) zevendesohen nga parametrat te metoda execute
-        //kurse pa parametra, vazhdojme direkt me metoden query
-        //metodat fetch/fetchAll perdoren kur duam te kthejme/marrim ndonje vlere
-        
-
-
-        public function insertPerdoruesit($Perdoruesi){
+        function insertUser($user){
             $conn = $this->connection;
+            
+            $name = $user->getName();
+            $email = $user->getEmail();
+            $password = $user->getPassword();
+            $confirm = $user->getConfirm();
+            $role = $user->getRole();
 
-            $emri = $Perdoruesi->getEmri();
-            $emaili = $Perdoruesi->getEmail();
-            $password = $Perdoruesi->getPassword();
-            $confirmpassword = $Perdoruesi->getConfirmpassword();
-           
-
-            $sql = "INSERT INTO user_form(name, email , password) VALUES (?,?,?)";
-
+            $sql = "INSERT INTO user(name, email, password, confirm, role) VALUES (?,?,?,?,?)";
             $statement = $conn->prepare($sql);
-            $statement->execute([$emri, $emaili, $password,$confirmpassword]);
+            $statement->execute([$name, $email, $password, $confirm, $role]);
 
-            echo "<script>alert('U shtua me sukses!')</script>";
+            // echo "<script> alert('Register was successful!');</script>";
         }
 
-        public function getAllPerdoruesit(){
+        function getAllUsers(){
             $conn = $this->connection;
 
-            $sql = "SELECT * FROM user_form";
+            $sql = "SELECT * FROM user";
             $statement = $conn->query($sql);
+            $users = $statement->fetchAll();
 
-            $Perdurusi = $statement->fetchAll();
-            return $Perdurusi;
+            return $users;
         }
 
-
-        //Pjesa tjeter e funksioneve CRUD: update 
-        //dergohet parametri ne baze te cilit e identifikojme studentin (ne kete rast id, por mund te jete edhe ndonje atribut tjeter) dhe parametrat e tjere qe mund t'i ndryshojme (emri, mbiemri, etj...)
-        public function editPerdoruesi( $id,$name, $email, $password){
+        function getUserById($id){
             $conn = $this->connection;
-            $sql = "UPDATE user_form SET name=?, email=?, password=?, WHERE id=?";
-
-            $statement = $conn->prepare($sql);
-            $statement->execute([$name, $email, $password,$id]);
-
-            echo "<script>alert('U ndryshua me sukses!')</script>";
-
-        }
-
-        //delete
-
-        function deletePerdoruesi($id){
-            $conn = $this->connection;
-
-            $sql = "DELETE FROM user_form WHERE id=?";
-
+            $sql = "SELECT * FROM user WHERE id=?";
+            
             $statement = $conn->prepare($sql);
             $statement->execute([$id]);
+            $user = $statement->fetch();
+
+            return $user;
         }
 
-        //shtese per update: merr studentin ne baze te Id
+        function updateUser($name, $email, $password, $confirm, $role){
+            $conn = $this->connection;
+            $sql = "UPDATE user SET name=?, email=?, password=?, confirm=?, role=? WHERE id=?";
+            
+            $statement = $conn->prepare($sql);
+            $statement->execute([$name, $email, $password, $confirm, $role, $id]);
 
-        function getPerdoruesiById($id){
+            // echo "<script>alert('Update was successful');</script>";
+        }
+
+        function deleteUser($id){
             $conn = $this->connection;
 
-            $sql = "SELECT * FROM user_form WHERE id=?";
-
+            $sql = "DELETE FROM user WHERE id=?";            
+            
             $statement = $conn->prepare($sql);
             $statement->execute([$id]);
-            $Perdurusi=$statement->fetch();
 
-            return $Perdoruesi;
+            // echo "<script>alert('Delete was successful!');</script>";
         }
 
+        function emailExists($email){
+            $conn = $this->connection;
+
+            $sql = "SELECT COUNT(*) FROM user WHERE email = ?";
+            $statement = $conn->prepare($sql);
+            $statement->execute([$email]);
+            $count = $statement->fetchColumn();
+
+            return ($count > 0);
+        }
     }
-
 ?>

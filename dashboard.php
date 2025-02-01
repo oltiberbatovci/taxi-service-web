@@ -7,10 +7,10 @@ include ("ContactRepository.php");
 include("RezervimiRepository.php");
 include("PerdoruesitRepository.php");
 
-if(!isset($_SESSION['admin_name'])){
-    header('location:login.php');
-    exit(); 
- }
+// if(!isset($_SESSION['admin_name'])){
+//     header('location:login.php');
+//     exit(); 
+//  }
 
 
 $strep = new aplikimetRepository();
@@ -24,7 +24,7 @@ $allRezervimi = $stre2->getAllRezervimiet();
 
 
 $stre3 = new PerdoruesitRepository();
-$allPerdoruesit = $stre3->getAllPerdurusit();
+$allUsers = $stre3->getAllUsers();
 
 ?>
 
@@ -47,12 +47,12 @@ $allPerdoruesit = $stre3->getAllPerdurusit();
             </tr>
             </thead>
             <tbody>
-                <?php foreach($allPerdoruesit as $Perdorusi) { ?> <!--e hapim foreach-->
+                <?php foreach($allUsers as $Perdorusi) { ?> <!--e hapim foreach-->
                     <tr>
                         <td><?php echo $Perdorusi['name'];?></td>
                         <td><?php echo $Perdorusi['email'];?></td>
                         <td><?php echo $Perdorusi['password'];?></td>
-                        <td><?php echo $Perdorusi['user_type'];?></td>
+                        <td><?php echo $Perdorusi['role'];?></td>
                         <td><a href='editP.php?id=<?php echo $Perdorusi['id']?>'>Edit</a></td> <!--e dergojme id ne url permes pjeses ?id= dhe permes kodit ne php e marrim nga studenti i cili eshte i paraqitur ne kete rresht-->
                         <td><a href='deleteP.php?id=<?php echo $Perdorusi['id']?>'>Delete</a></td>
                     </tr>

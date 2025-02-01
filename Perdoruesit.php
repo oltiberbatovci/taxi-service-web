@@ -1,50 +1,54 @@
 <?php
+    class Perdoruesit{
+        private $id;
+        private $name;
+        private $email;
+        private $password;
+        private $confirm;
+        private $role;
 
+        public function __construct($id, $name, $email, $password, $confirm, $role){
+            $this->id = $id;
+            $this->name = $name;
+            $this->email = $email;
+            $this->password = $password;
+            $this->confirm = $confirm;
+            $this->role = $role;
+        }
 
+        public function getId(){
+            return $this->id;
+        }
+        public function getName(){
+            return $this->name;
+        }      
+        public function getEmail(){
+            return $this->email;
+        }
+        public function getPassword(){
+            return $this->password;
+        }  
+        public function getConfirm(){
+            return $this->confirm;
+        }  
+        public function getRole(){
+            return $this->role;
+        } 
 
-class Perdoruesit{
-  private $id;
-  private $emri;
-  private $email;
-  private $password;
-  private $confirmpassword;
-
-    public function __construct($id,$emri,$email,$password,$confirmpassword){
-        $this->emri = $emri;
-        $this->email = $email;
-        $this->password = $password;
-        $this->confirmpassword = $confirmpassword;
+        public function setName($name){
+            $this->name = $name;
+        }  
+        public function setEmail($email){
+            $this->email = $email;
+        }
+        public function setPassword($password){
+            $this->password = $password;
+        }
+        public function setConfirm($confirm){
+            $this->confirm = $confirm;
+        }   
+        public function setRole($role){
+            $this->role = $role;
+        }        
     }
-
-    public function getEmri(){
-        return $this->emri;
-    }
-    public function setEmri($e){
-        $this->Emri = $e;
-    }
-    public function getEmail(){
-        return $this->email;
-    } 
-    public function setEmaili($e){
-        $this->Emaili = $e;
-    }
-    public function getPassword(){
-        return $this->password;
-    } 
-    public function setPassword($password){
-        $this->password = $password;
-    }
-    public function getConfirmpassword(){
-        return $this->confirmpassword;
-    }
-    public function setConfirmpassword($Cpassword){
-        $this->confirmpassword = $Cpassword;
-    }
-    public function __toString(){
-        return" - perduruesi:".$this->$id ." : ".$this->$emri." : ".$this->$email." : ".$this->$password." : ".$this->$confirmpassword;
-    }
-
-}
-
-
 ?>

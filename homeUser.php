@@ -4,13 +4,13 @@ session_start();
 include 'DatabaseConnection.php';
 
 
-if(!isset($_SESSION['user_name'])){
-   header('location:login.php');
-   exit(); 
-
-}
+// if (!isset($_SESSION['user']) && !isset($_SESSION['admin'])) {
+//     header('Location: login.php');
+//     exit();
+// }
 $dbConnection = new DatabaseConnection();
 $conn = $dbConnection->startConnection();
+
 
 ?>
 
@@ -51,7 +51,7 @@ $conn = $dbConnection->startConnection();
                     <a class="nav-link" href="punesimi.php">PUNESOHU</a>
                   </li>
                 </ul>
-                <a href="login.php"><button id="login-btn">Login</button></a>
+                <a href="logout.php"><button id="login-btn">Log Out</button></a>
               </div>
             </div>
           </nav>

@@ -3,10 +3,10 @@ session_start();
 
 include 'DatabaseConnection.php';
 
-if(!isset($_SESSION['admin_name'])){
-   header('location:login.php');
-   exit(); 
-}
+// if (!isset($_SESSION['user']) && !isset($_SESSION['admin'])) {
+//     header('Location: login.php');
+//     exit();
+// }
 $dbConnection = new DatabaseConnection();
 $conn = $dbConnection->startConnection();
 

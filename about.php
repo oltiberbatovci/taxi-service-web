@@ -13,29 +13,29 @@
   <section id="nav-bar">
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
-          <a class="navbar-logo" href="index.html">ThirreTaxin</a>
+          <a class="navbar-logo" href="index.php">ThirreTaxin</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link" href="index.html">HOME</a>
+                <a class="nav-link" href="index.php">HOME</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="about.html">ABOUT</a>
+                <a class="nav-link" href="about.php">ABOUT</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="order.html">POROSIT</a>
+                <a class="nav-link" href="order.php">POROSIT</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="contact.html">CONTACT</a>
+                <a class="nav-link" href="contact.php">CONTACT</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="puna.html">PUNESOHU</a>
+                <a class="nav-link" href="punesimi.php">PUNESOHU</a>
               </li>
             </ul>
-            <a href="login.html"><button id="login-btn">Login</button></a>
+            <a href="login.php"><button id="login-btn">Login</button></a>
           </div>
         </div>
       </nav>
@@ -62,7 +62,7 @@
           shërbim të besueshëm dhe të shpejtë në mënyrë që udhëtarët të mund të mbërrijnë në destinacionin e tyre me lehtësi dhe rehati.
           Çdo operator është i përgatitur për të përballuar kërkesat e ndryshme të klientëve dhe për të siguruar një përvojë taksie të jashtëzakonshme për të gjithë udhëtarët e tyre.
         </p>
-        <a href="order.html" class="butoni-about">Porosit Taxi</a>
+        <a href="order.php" class="butoni-about">Porosit Taxi</a>
       </div>
     </section>
   </div>
@@ -124,7 +124,7 @@
 
 <footer>
   <div class="footermain">
-      <a class="footer-logo" href="index.html">ThirreTaxin</a>
+      <a class="footer-logo" href="index.php">ThirreTaxin</a>
       <p class="p2-description" style="width: 40%; padding: 20px;">Zgjedhja juaj sapo eshte bere me e lehte. Me ne do te keni mundesine te kurseni kohen tuaj. Shpejte, sigurt dhe efikas. Te gjitha ne nje vend!
       Platforma me e re ne treg e flotes se taksive me gjithsej 6 operatore nen sherbimin tuaj 24/7.</p>
   

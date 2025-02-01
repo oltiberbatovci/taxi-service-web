@@ -1,70 +1,28 @@
 <?php
-include 'DatabaseConnection.php';
 session_start();
+include 'Perdoruesit.php';
+include 'PerdoruesitRepository.php';
 
-$error = [];
+    if ($_SERVER['REQUEST_METHOD'] == "POST"){
 
-if (isset($_POST['submit'])) {
-    $dbConnection = new DatabaseConnection();
-    $conn = $dbConnection->startConnection();
+        $name = $_POST['name'];
+        $email = $_POST['email'];
+        $password = $_POST['password'];
+        $confirm = $_POST['confirm'];
+        $role = 'user';
 
-    if ($conn) {
-        $name = trim($_POST['name']);
-        $email = trim($_POST['email']);
-        $password = trim($_POST['password']);
-        $confirm_password = trim($_POST['confirm_password']);
-
-        // Check if fields are empty
-        if (empty($name) || empty($email) || empty($password) || empty($confirm_password)) {
-            $error[] = "All fields are required!";
+        if(empty($name) || empty($email) || empty($password) || empty($confirm)){
+                echo "<script> alert('Please fill all fields!');</script>";
         }
-
-        // Validate email format
-        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            $error[] = "Invalid email format!";
+        else{
+            $user = new Perdoruesit(null, $name, $email, $password, $confirm, $role);
+            $userRepository = new PerdoruesitRepository();
+            $userRepository->insertUser($user);
+            echo "<script> alert('Register was successful!'); 
+            window.location = 'login.php';</script>";
         }
-
-        // Check if password matches confirm password
-        if ($password !== $confirm_password) {
-            $error[] = "Passwords do not match!";
-        }
-
-        // Ensure password is secure
-        if (strlen($password) < 7) {
-            $error[] = "Password must be at least 7 characters!";
-        }
-
-        // Check if email already exists in the database
-        $sql = "SELECT * FROM user_form WHERE email = :email";
-        $stmt = $conn->prepare($sql);
-        $stmt->execute(['email' => $email]);
-        if ($stmt->rowCount() > 0) {
-            $error[] = "Email already exists!";
-        }
-
-        // If no errors, insert into database and log in automatically
-        if (empty($error)) {
-            $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-
-            $insert_sql = "INSERT INTO user_form (name, email, password) VALUES (:name, :email, :password)";
-            $insert_stmt = $conn->prepare($insert_sql);
-            $insert_stmt->execute([
-                'name' => $name,
-                'email' => $email,
-                'password' => $hashed_password
-            ]);
-
-            // Automatically log in the user
-            $_SESSION['user_name'] = $name;
-            
-            // Redirect to homeUser.php
-            header("Location: homeUser.php");
-            exit();
-        }
-    } else {
-        $error[] = "Database connection error!";
     }
-}
+
 ?>
 
 
@@ -107,7 +65,7 @@ if (isset($_POST['submit'])) {
                     <div class="error-message" id="passwordError"></div>
 
                     <div class="input-field">
-                        <input id="confirm_password" name="confirm_password" type="password" placeholder="Confirm Password" class="password">
+                        <input id="confirm" name="confirm" type="password" placeholder="Confirm Password" class="password">
                     </div>
                     <div class="error-message" id="confirmPasswordError"></div>
 
@@ -129,7 +87,7 @@ if (isset($_POST['submit'])) {
         let name = document.getElementById('name').value;
         let email = document.getElementById('email').value;
         let password = document.getElementById('password').value;
-        let confirmPassword = document.getElementById('confirm_password').value;
+        let confirmPassword = document.getElementById('confirm').value;
 
         let nameError = document.getElementById('nameError');
         let emailError = document.getElementById('emailError');
