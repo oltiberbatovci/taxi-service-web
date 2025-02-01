@@ -33,28 +33,26 @@ $allUsers = $stre3->getAllUsers();
 
 <html>
     <body>
-        <link rel="stylesheet" href="edit.css"> 
+        <link rel="stylesheet" href="dashboard.css"> 
         <table>
             <thead>
             <tr>
                 <h3 id="h3">USERS</h3>
                 <th>Emri</th>
                 <th>Email</th>
-                <th>Passwordi</th>
-                <th>user_type</th>
+                <th>Role</th>
                 <th></th>
                 <th></th>
             </tr>
             </thead>
             <tbody>
-                <?php foreach($allUsers as $Perdorusi) { ?> <!--e hapim foreach-->
+                <?php foreach($allUsers as $Perdoruesi) { ?> <!--e hapim foreach-->
                     <tr>
-                        <td><?php echo $Perdorusi['name'];?></td>
-                        <td><?php echo $Perdorusi['email'];?></td>
-                        <td><?php echo $Perdorusi['password'];?></td>
-                        <td><?php echo $Perdorusi['role'];?></td>
-                        <td><a href='editP.php?id=<?php echo $Perdorusi['id']?>'>Edit</a></td> <!--e dergojme id ne url permes pjeses ?id= dhe permes kodit ne php e marrim nga studenti i cili eshte i paraqitur ne kete rresht-->
-                        <td><a href='deleteP.php?id=<?php echo $Perdorusi['id']?>'>Delete</a></td>
+                        <td><?php echo $Perdoruesi['name'];?></td>
+                        <td><?php echo $Perdoruesi['email'];?></td>
+                        <td><?php echo $Perdoruesi['role'];?></td>
+                        <td><a href='editPerdoruesit.php?id=<?php echo $Perdoruesi['id']?>'>Edit</a></td> <!--e dergojme id ne url permes pjeses ?id= dhe permes kodit ne php e marrim nga studenti i cili eshte i paraqitur ne kete rresht-->
+                        <td><a href='deletePerdoruesit.php?id=<?php echo $Perdoruesi['id']?>'>Delete</a></td>
                     </tr>
                 <?php }?> <!--e mbyllim foreach-->
             </tbody>
@@ -86,8 +84,8 @@ $allUsers = $stre3->getAllUsers();
                         <td><?php echo $rezervim['vendndodhja'];?></td>
                  
                      
-                        <td><a href='editR.php?id=<?php echo $rezervim['id']?>'>Edit</a></td> <!--e dergojme id ne url permes pjeses ?id= dhe permes kodit ne php e marrim nga studenti i cili eshte i paraqitur ne kete rresht-->
-                        <td><a href='deleteR.php?id=<?php echo $rezervim['id']?>'>Delete</a></td>
+                        <td><a href='editRezervimi.php?id=<?php echo $rezervim['id']?>'>Edit</a></td> <!--e dergojme id ne url permes pjeses ?id= dhe permes kodit ne php e marrim nga studenti i cili eshte i paraqitur ne kete rresht-->
+                        <td><a href='deleteRezervimi.php?id=<?php echo $rezervim['id']?>'>Delete</a></td>
                     </tr>
                 <?php }?> <!--e mbyllim foreach-->
             </tbody>
@@ -108,7 +106,7 @@ $allUsers = $stre3->getAllUsers();
                 <th>Nenshtetsia</th>
                 <th>Qyteti</th>
                 <th>Adresa</th>
-                <th>Mundesit</th>
+                <th></th>
                 <th></th>
                
             </tr>
@@ -156,8 +154,8 @@ $allUsers = $stre3->getAllUsers();
                         <td><?php echo $student['email'];?></td>
                         <td><?php echo $student['subject'];?></td>
                       
-                        <td><a href='editC.php?id=<?php echo $student['id']?>'>Edit</a></td> <!--e dergojme id ne url permes pjeses ?id= dhe permes kodit ne php e marrim nga studenti i cili eshte i paraqitur ne kete rresht-->
-                        <td><a href='deleteC.php?id=<?php echo $student['id']?>'>Delete</a></td>
+                        <td><a href='editContact.php?id=<?php echo $student['id']?>'>Edit</a></td> <!--e dergojme id ne url permes pjeses ?id= dhe permes kodit ne php e marrim nga studenti i cili eshte i paraqitur ne kete rresht-->
+                        <td><a href='deleteContact.php?id=<?php echo $student['id']?>'>Delete</a></td>
                     </tr>
                 <?php }?> <!--e mbyllim foreach-->
             </tbody>
