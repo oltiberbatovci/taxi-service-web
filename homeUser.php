@@ -4,10 +4,17 @@ session_start();
 include 'DatabaseConnection.php';
 
 
-// if (!isset($_SESSION['user']) && !isset($_SESSION['admin'])) {
-//     header('Location: login.php');
-//     exit();
-// }
+if ($_SESSION['role'] !== 'user') {
+    header('Location: login.php'); 
+    exit();
+  }
+
+    if(isset($_SESSION['email']) && isset($_SESSION['password'])){
+        echo '<li><button class="logIn"><a href="logout.php">Log out</a></button></li>';
+    } 
+    else {
+        echo '<li><button id="login-btn"><a href="login.php">Log in</a></button></li>';
+    }
 $dbConnection = new DatabaseConnection();
 $conn = $dbConnection->startConnection();
 
@@ -67,7 +74,7 @@ $conn = $dbConnection->startConnection();
                 <div class="col-md-6">
                     <p class="p1-title">WELCOME TO ONE OF THE LARGEST <span>TAXI</span> FLEETS OF <span id="span-pr">PRISHTINA</span></p>
                     <p class="p2-description">Zgjedhja juaj sapo eshte bere me e lehte. Me ne do te keni mundesine te kurseni kohen tuaj. Shpejte, sigurt dhe efikas. Te gjitha ne nje vend!</p>
-                    <h1 class="welcome" style="text-align:center;font-size:13px;">Welcome User : <span><?php echo $_SESSION['user_name'] ?></span></h1>                
+                    <h1 class="welcome" style="text-align:center;font-size:13px;">Welcome User : <span><?php echo $_SESSION['name'] ?></span></h1>                
                 </div>
                 <div id="kontenti">
                   <header>
